@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximun-scale=1, user-scalable=no">
+    <title>Tags-Pestañas-01</title>
+    <!-- <link href="css/ImgGalleryDgnDpStyle.css" rel="stylesheet" type="text/css">  -->
+    <style>
+
+    /* Para subirlo a la carpeta aportaciones, se deja el style en la página html y no usamos el link */
+    
+    * {
+        box-sizing: border-box;
+    }
+
+    .container {
+      position: relative;
+    }
+
+    h3 { text-align: center; margin-top:20px; height: 25px;}
+
+    .row {         
+        width:80%; 
+        margin:auto;        
+        /* display properties*/
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: left;    
+        align-items: stretch;
+        align-content: center;
+    }
+
+    .infoAmpliada {        
+    	width:80%;
+        min-height:auto;		    
+		margin:auto;
+        border: 1px solid gray;
+        /* display properties*/    
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: stretch;
+        align-content: center;
+    }
+
+    #infoGr {
+        border:1px solid gray;
+        padding:50px;
+        /* display properties*/    
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: stretch;
+        align-content: center;
+    }
+
+    .hideTag { display: none; }
+
+
+    .cursor {
+        cursor: pointer;
+    }
+
+    .columna {
+        float: left;
+        width: 8%;
+        border: 1px solid gray;
+        border-top-right-radius: 15px;
+        border-left:none;
+        margin-left:-6px;
+    }
+
+    .c1 {
+        border-left: 1px solid gray;
+        margin-left:0;
+    }
+
+    .columna p {
+        /* display properties*/    
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: stretch;
+        align-content: center;
+    }
+
+    hr{
+      margin:0px;height:30px;border-width:0;color:rgb(88, 22, 241);background-color:rgb(48, 47, 47)
+    }
+
+    #name-text {
+        text-align: left;
+        font-size: 20px;
+        margin:auto;
+        padding-left: 20px;
+        width:80%;
+        height:40px;
+        border-width:0;
+        color:white;
+        background-color:rgb(117, 64, 241);
+        
+        /* display properties*/
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: left;
+        align-items: stretch;
+        align-content: center;			
+    }
+
+    #name-text { text-align: left;}
+
+    #name-text::before { content: "Infografía Seleccionada: "; } 
+
+    .titleInfo { color:blue; font-size: 20px;}
+
+    /* ZOOM EFFECTS */
+    .zoom {
+      /* 
+      padding: 50px;
+      background-color: green; 
+      */
+      transition: transform .2s;
+      width: 20px;
+      height: 40px;
+      margin: 0 auto;      
+    }
+
+    .zoom:hover {
+      -ms-transform: scale(1.2); /* IE 9 */
+      -webkit-transform: scale(1.2); /* Safari 3-8 */
+      transform: scale(1.2); 
+      opacity:1 !important;
+    }
+    
+    </style>
+</head>
+
+<body>
+
+    <h3>EJEMPLO TAGS-PERSTAÑAS</h3>
+    
+    <div class="container">
+
+        <div class="row">
+            <div id="t1" class="columna c1">
+                <p id="tag1" class="cursor zoom" onclick="ampliaInfo(1)" draggable="true" ondragstart="dragstart_handler(event);" ondragend="dragend_handler(event);">Info1</p>
+            </div>
+            <div id="t2" class="columna">
+                <p id="tag2" class="cursor zoom"  onclick="ampliaInfo(2)" draggable="true" ondragstart="dragstart_handler(event);" ondragend="dragend_handler(event);">Info2</p>
+            </div>          
+            <div id="t3" class="columna">
+                <p id="tag3" class="cursor zoom"  onclick="ampliaInfo(3)" draggable="true" ondragstart="dragstart_handler(event);" ondragend="dragend_handler(event);">Info3</p>
+            </div>
+            <div id="t4" class="columna">
+                <p id="tag4" class="cursor zoom"  onclick="ampliaInfo(4)" draggable="true" ondragstart="dragstart_handler(event);" ondragend="dragend_handler(event);">Info4</p>
+            </div>
+            <div id="t5" class="columna">
+                <p id="tag5" class="cursor zoom"  onclick="ampliaInfo(5)" draggable="true" ondragstart="dragstart_handler(event);" ondragend="dragend_handler(event);">Info5</p>
+            </div>    
+          </div>
+        </div>
+
+        <div id="name-text"></div>
+
+        <div class="infoAmpliada" id="dropHere" ondrop="drop_handler(event);" ondragover="dragover_handler(event);">
+        <div></div>
+            <div id="infoGr"></div>
+            <div id="info1" class="hideTag"><span class="titleInfo">INFOGRAFÍA AMPLIADA 1</span><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis placeat natus laudantium error doloremque omnis pariatur enim commodi id velit iusto beatae recusandae eveniet minima, minus distinctio, hic, incidunt amet.</p></div>
+            <div id="info2" class="hideTag"><span class="titleInfo">INFOGRAFÍA AMPLIADA 2</span><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis placeat natus laudantium error doloremque omnis pariatur enim commodi id velit iusto beatae recusandae eveniet minima, minus distinctio, hic, incidunt amet.</p></div>
+            <div id="info3" class="hideTag"><span class="titleInfo">INFOGRAFÍA AMPLIADA 3</span><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis placeat natus laudantium error doloremque omnis pariatur enim commodi id velit iusto beatae recusandae eveniet minima, minus distinctio, hic, incidunt amet.</p></div>
+            <div id="info4" class="hideTag"><span class="titleInfo">INFOGRAFÍA AMPLIADA 4</span><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis placeat natus laudantium error doloremque omnis pariatur enim commodi id velit iusto beatae recusandae eveniet minima, minus distinctio, hic, incidunt amet.</p></div>
+            <div id="info5" class="hideTag"><span class="titleInfo">INFOGRAFÍA AMPLIADA 5</span><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis placeat natus laudantium error doloremque omnis pariatur enim commodi id velit iusto beatae recusandae eveniet minima, minus distinctio, hic, incidunt amet.</p></div>            
+        </div>
+
+    </div>
+
+    <script>  // functions with html attributes 
+
+        nTag=1; 
+
+        function carga_inicial(){
+            // Selecciono la primeta Infografía a ampliar
+            nTag = 1;           
+            // Ejecuto función que coloca la foto en el div "infoAmpliada" y actualiza los "val" y "opacity" respectivos                     
+            ampliaInfo(1);        
+        }
+
+        // coloca la foto elegida en el div de foto ampliada  
+        function ampliaInfo(numTag) {		
+
+            console.log('input ampliaInfo: numTag es-> ' + numTag + ' | nTag es-> ' + nTag);	
+
+            document.getElementById('t'+nTag).style.backgroundColor="transparent";
+            document.getElementById('t'+nTag).style.borderRight="1px solid gray";
+
+            // identifico info en estatus "ampliada"    
+            var infoAmpliada = document.getElementById("infoGr");
+
+            /* 
+                Identifico el id de la foto ampliada en la galería, y usamos la 
+                función nativa parseInt() para garantizar que 'val' se lea como número
+            */
+            var miTagSel = document.getElementById( 'tag' + parseInt(infoAmpliada.getAttribute("val")) );
+
+            // actualizo atributo val en infoAmpliada y opacity de dicha foto en la galería 
+            infoAmpliada.setAttribute("val",numTag);
+            // miTagSel.style.opacity="0.7";
+
+            // cambio background color al tag seleccionado
+            var tagS = document.getElementById('t'+numTag);
+            tagS.style.backgroundColor="gray";                        
+
+            // identifico tag foto seleccionada en la galería    
+            var tagSelect = document.getElementById('info'+numTag);            
+
+            // Actualiza atributos restantes en ambas fotos                         
+            infoAmpliada.innerHTML=tagSelect.innerHTML;            
+            infoAmpliada.val=numTag; 
+            document.getElementById('name-text').innerHTML="<span>&nbsp;&nbsp;" + numTag + "</span>"; 
+            
+            // actualizo el apuntador
+            nTag=numTag;
+            console.log('ampliaInfo: nTag es-> ' + nTag)
+            
+        }
+
+
+        // al cargar la página invocamos la función carga_inicial() para llenar el div con la foto grande
+        window.onload = carga_inicial;        
+        
+    </script>
+
+    
+    <script> 
+    
+    /*
+        Drag & Drop functions  (Los comentarios y console.log invocados pueden suprimirse en la versión final)
+      
+
+      function dragstart_handler(ev) {
+          console.log("dragStart");
+          // Change the source element's background color to signify drag has started
+          ev.currentTarget.style.border = "dashed red";
+          // Add the id of the drag source element to the drag data payload so
+          // it is available when the drop event is fired
+          ev.dataTransfer.setData("text", ev.target.id);
+          // Tell the browser both copy and move are possible
+          ev.effectAllowed = "copyMove";
+      }
+  
+      function dragover_handler(ev) {
+          console.log("dragOver");
+          // Change the target element's border to signify a drag over event
+          // has occurred
+          // ev.currentTarget.style.background = "lightblue";
+          ev.preventDefault();
+      }
+  
+      function drop_handler(ev) {
+          console.log("Drop");
+          ev.preventDefault();
+          // Get the id of drag source element (that was added to the drag data
+          // payload by the dragstart event handler)
+
+          var id = ev.dataTransfer.getData("text");
+          //vemos en consola navegador el contenido de esta data
+          // console.log('%c id es: ' + id + ' ','background: blue; color: white','\n\n');
+          listAtrib(id);
+          
+          // creamos variables para invocar la función JS "ampliaInfo()"
+          var tag_movido = document.getElementById(id);
+          var num_tag_movido = parseInt(tag_movido.getAttribute('val')); // parseInt() garantiza que lo leído se interprete como número entero
+          console.log('%c num de la foto movida es: ' + num_tag_movido + ' ','color: green','\n\n');
+          
+          nTag=num_tag_movido;
+          ampliaInfo(num_tag_movido);         
+
+      }
+  
+      function dragend_handler(ev) {
+          console.log("dragEnd");
+          // Restore source's border
+          ev.target.style.border = "solid green";
+          // Remove all of the drag data
+          ev.dataTransfer.clearData();
+      }
+
+    */  
+
+  </script>
+
+  <script>   // ver en consola navegador los atributos del html tag elegido
+    function listAtrib(el_id) {
+        var el = document.getElementById(el_id);
+        // vemos en consola el contenido del parámetro de entrada a la función
+        console.log('%c listAtrib of id: ' + el_id + ' ','background: blue; color: white','\n');
+        // vemos con consola los distintos atributos del html tag cuyo id pasamos como parámetro
+        for (var i = 0, atts = el.attributes, n = atts.length, arr = []; i < n; i++){            
+            console.log('attrib: ' + i + ' -> ' + atts[i].nodeName  + ' | value -> ' + atts[i].nodeValue);
+        }
+        console.log('');
+    }
+  </script>
+
+    
+</body>
+</html>
