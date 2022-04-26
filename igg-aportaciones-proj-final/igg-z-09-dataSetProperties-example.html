@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>DataSetProp</title>
+  <style type="text/css">
+
+    article {
+      display: block;
+      background: #ccc;
+    }
+    article::before {
+        content: attr(data-parent);
+    }
+    article[data-columns='3']{
+      width: 400px;
+    }
+    article[data-columns='4']{
+      width: 600px;
+    }
+
+    .disp-hide { display: none;}
+
+    .mt200 { margin-top: 100px; }  
+
+    .disp-col-center { 
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        align-content: stretch;
+    }
+
+    .disp-row-center { 
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        align-content: stretch;
+    }
+
+
+  </style>
+</head>
+<body>
+<div class="container mt100 disp-col-center">
+    <h1>Data set properties example</h1>
+    <div>
+        <section id="sect-img-ampliada" class="mt100 disp-col-center">
+            <img id="img-Amp" class="disp-hide" src="" alt="" width="500" height="500">
+        </section>
+        <section class="disp-row-center">
+            <article id="art-car01" data-columns="3" data-indexnumber="123" data-parent="cars">
+                <img src="./imagenes/foto01.jpg" alt="foto01" width="100" height="100">
+            </article>
+            <article id="art-hall01" data-columns="3" data-indexnumber="124" data-parent="houses">
+                <img src="./imagenes/foto02.jpg" alt="foto02" width="100" height="100">
+            </article>
+        </section>
+    </div>
+</div>    
+  
+  
+<script>
+var article = document.querySelector('#car01'),
+	data = article.dataset;
+    alert(data.columns);
+    // data.columns -> "3"
+    // data.indexnumber -> "12314"
+    // data.parent -> "cars"
+    article.dataset.parent = 'vehicles';
+    alert(data.parent);
+</script>  
+</body>
+</html>

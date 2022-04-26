@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">	
+    <title>Form03-ObjectForm-UL-LI</title>
+    <link rel="icon" type="image/x-icon" href="img-igg/igg-favicon.png">
+    <link type="text/css" href="css/iggStyle-01.css" rel="stylesheet">
+<!--
+	<link type="text/css" href="css/????.css" rel="stylesheet">
+    <script type="text/javascript" src="js/???.js"></script>
+-->    
+
+    <style>   /* local style file */
+
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;             
+        }
+
+        h1 { text-align: center; margin-top:10px; margin-bottom: 0; }
+
+        .container {           
+            margin:0;            
+            height: auto;
+            padding:20px;
+            margin-top:10px;    
+        }        
+
+        form {
+            width: 70%; 
+            padding:20px;                      
+        } 
+
+        form div{
+            margin:5px;
+            padding:5px;
+            height:200px;
+            border: 3px solid rgb(185, 185, 185);
+        }
+
+        form ul {
+            margin-left:5%;
+            margin-top:5px;
+        }
+
+        form li {
+            list-style: none;
+        }
+
+        form ul li label{
+            float: left;
+            clear: left;
+            width: 200px;
+            text-align: right;
+            margin-right: 10px;
+            font-family:Verdana, Arial, Helvetica, sans-serif;
+            font-size:14px;
+        }
+
+        form ul li input, select, span {
+            float: left;
+            margin-bottom: 10px;
+        }
+
+        form ul li input {
+            margin-left:10px;
+        }        
+
+        form textarea {
+            float: left;
+            width: 350px;
+            min-height: 100px;
+        }
+
+        form #costoMenu {
+            float: left;
+            margin-left:0;
+        }        
+
+        #formEncab{
+            margin:5px;
+            padding:5px;
+            height:200px;
+            border: 3px solid rgb(185, 185, 185);
+        }
+
+        #formMenus{
+            margin:5px;
+            padding:5px;
+            height:180px;
+            border: 3px solid rgb(185, 185, 185);
+        }
+
+        #checkData {
+            margin:5px;
+            padding:5px;
+            height:50px;
+            border: 3px solid rgb(185, 185, 185);
+        }
+
+
+        #formButtons {
+            margin:5px;
+            padding:5px;
+            height:100px;
+            border: 3px solid rgb(115, 56, 252);
+        }
+
+        #formButtons {
+            margin-top:10px; 
+            margin-bottom: 10px;
+        }
+        
+        #checkDataB { padding: 3px; }
+        #submitB { padding: 3px; margin-bottom: 10px;}
+        #submitB { padding: 3px; margin-bottom: 10px;}
+        #resetB  { padding: 3px;}
+        
+/*       
+        [type="button"] {
+            clear: center; 
+            margin: 20px;
+            padding:5px;
+            font-size:15px;
+        }        
+
+        [type="submit"] {
+            clear: center;            
+            padding:5px;
+            font-size:15px;
+        }
+
+        [type="reset"] {
+            clear: center; 
+            margin: 20px 0 0 20px;
+            padding:5px;
+            font-size:15px;
+        }
+
+        p {
+            margin-left: 70px;
+            font-weight: bold;
+        }
+*/
+
+        .answer_style { 
+            display: none; 
+            margin-top: 20px;
+            /*  display properties */
+            /* display: flex; */
+            flex-direction: column;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+        }
+
+        .observations { width:80% }
+
+    </style>
+
+    <script>   /* local JS code */
+
+        function checkData() {
+            document.getElementById("answer").style.display="flex";
+        }
+
+        function formCheck() {
+            
+        }
+
+    </script>
+
+
+</head>
+
+<body>
+
+    <div class="container igg-disp-col-cent">
+     
+        <h1>FORM EXAMPLE</h1><br>
+
+        <form id="form1" class="igg-border-2-gray" name="form1" method="post" onSubmit="return formSubmit()" action="">
+            <div id="formEncab">
+                <ul>
+                    <!--  FIELDS  -->
+                    <li><label for="nom_apel">Nombre y Apellido:</label></li>
+                    <li><input type="text" name="nom_apel" size="40" /></li>
+                    <li><label for="edad">Edad: (opcional)</label></li>
+                    <li><input type="text" name="edad" size="3"/></li>
+                    <li><label for="tlf">Teléfono:</label></li>
+                    <li><input type="text" name="tlf" size="13" /></li>
+                    <li><label for="email">Email:</label></li>
+                    <li><input type="text" name="email" size="30" /></li>
+                    <li><label for="direcc">Dirección:</label></li>
+                    <li><input type="text" name="direcc" size="40" /></li>
+                </ul>
+            </div>
+
+            <div id="formMenus" class="">        
+                <ul>    
+                    <li><label for="menu">Menú Deseado: </label></li>
+                    <li><input type="radio" name="menu" value="Sano" checked onclick="console.log('menu ' + 1), seleccionarMenu(1)"/><span>Sano</span></li>
+                    <li><input type="radio" name="menu" value="Full" onclick="console.log('menu ' + 2), seleccionarMenu(2)"/><span>Full</span></li>
+                    <li><input type="radio" name="menu" value="medioMenu" onclick="console.log('menu ' + 3), seleccionarMenu(3)"/><span>medio menu</span></li>                    
+                    <li><label for="detalleMenu">Platos Incluidos: </label></li>
+                    <li><textarea name="detalleMenu" id="detalleMenu"></textarea></li>
+                    <li><label for="costoMenu">Precio :</label></li>                    
+                    <li><p name="costoMenu" id="costoMenu"></p></li>
+                </ul>
+            </div>
+            <div id="checkData" class="igg-disp-col-cent">
+                <input id="checkDataB" type="button" name="check"  onClick="formCheck()" value="Check data before submit">    
+            </div>
+
+            <div id="formButtons" class="igg-disp-col-cent"> 
+                    <input id="submitB" type="submit" name="submit" value="Submit">
+                    <input id="resetB" type="reset"  name="Reset"  value="Reset">
+            </div>    
+
+        </form>
+
+        <div id="answer" class="answer_style">
+            <textarea form="form1" class="observations" rows="10" cols="100" readonly ></textarea>
+        </div>       
+
+    </div>    
+ 
+<script>
+
+function seleccionarMenu(n){
+        /* datos de menus */ 
+        menus = new Array(1,2,3);
+        primero=new Array("Ensalada", "Pasta", "Sopa");
+        segundo=Array("Crema", "Txuleta y 2 acompañantes", "Pollo");
+        postre=["Fruta del día", "Natillas", "Helado"];
+        precio=[15,18,10];
+        indice = n-1;
+       
+       // mostrar todo
+       var menuElegido="Menú: " + menus[indice] + "\n\n"; 
+       menuElegido += "El primer plato es: "+ primero[indice] + "\n";
+       menuElegido += "El segundo plato es: "+ segundo[indice] + "\n";
+       menuElegido += "El postre es: "+ postre[indice];
+
+       document.getElementById("detalleMenu").innerHTML=menuElegido; 
+       document.getElementById("costoMenu").innerHTML=precio[indice]+" euros";      
+    }    
+
+function formSubmit(){
+    formCheck();
+}
+
+
+function formCheck() {
+    var n_a = document.form1.nom_apel;
+    var age = document.form1.edad;
+    var tlf = document.form1.tlf;
+    var email = document.form1.email;
+    var direc = document.form1.direcc;
+
+    if(nom_apel_validation(n_a)) {
+        if(age_validation(age)){
+            if(tlf_validation(tlf)){ 
+                if(email_validation(email)){ 
+                    if(direc_validation(direc)) { }  
+                }
+            }
+        }
+    }
+    return false;
+}
+
+function campoNumerico(uzip) {
+        var numbers = /^[0-9]+$/;
+        if (uzip.value.match(numbers)) {
+            return true;
+        } else {
+            alert('ZIP code must have numeric characters only');
+            uzip.focus();
+            return false;
+        }
+    }
+
+function nom_apel_validation(nom_ape){
+    console_Log('Nombre y apellid: ' + nom_ape.value,'','blue',1);
+    if( nom_ape.value == '' ){
+        alert("nom ape invalido");
+        console_Log('nom ape inválido: ' + nom_ape.value,'red','white',1);
+        nom_ape.focus();
+        return false;
+    }
+    return true;
+}
+
+function age_validation(m){
+    console_Log('Edad: ' + m.value,'','blue',1);
+    if ( ( !isNaN(m.value) && m.value <= 100 && m.value >=0 ) || m.value=="" ) { return true; } 
+      else { 
+        alert('La Edad debe ser un número entre 0 y 100 años !');
+        m.focus();
+        return false;
+    }
+}
+
+function tlf_validation(t){ // check tlf format
+    console_Log('Teléfono: ' + t.value,'','blue',1);
+    if ( !isNaN(t.value) ) { return true; } 
+      else {
+        alert('el número de teléfono debe ser menor de 9 digitos !');
+        t.focus();
+        return false; 
+      }    
+}
+
+function email_validation(em){   
+
+    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+    if(em.value.match(mailformat)) {
+            console_Log('Email: ' + em.value,'','blue',1);
+            return true;            
+        } else {
+            alert("email invalido");
+            console_Log('Email inválido: ' + em.value,'red','white',1);
+            em.focus();
+            return false;
+    }  
+             
+}    
+    
+function direc_validation(dir){  // check direction format
+    console_Log('Dirección: ' + dir.value,'','blue',1); 
+    var letters = /^[0-9a-zA-Z- ]+$/;
+        if (dir.value.match(letters)) {
+            return true;
+        } else {
+            alert('La Dirección debe ser alfanumérico - solo carácteres');
+            dir.focus();
+            return false;
+        }
+
+
+    return true;       
+}
+
+</script>  
+
+<script>
+    seleccionarMenu(1);
+</script>
+
+<script type="text/javascript" src="js/myFunct-htmlAnalysis.js"></script>
+
+</body>
+
+</html>    

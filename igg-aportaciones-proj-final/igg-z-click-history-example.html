@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="click events history" />	
+    <title>click-history</title>
+    <link rel="icon" type="image/x-icon" href="img-igg/igg-favicon.png">
+    
+<!--
+    <script type="text/javascript" src="../0-Dir-Base-Model/js/myFunct-htmlAnalysis.js"></script>
+	<link type="text/css" href="css/????.css" rel="stylesheet">
+    <script type="text/javascript" src="js/???.js"></script>
+-->    
+
+    <style>   /* local style file */
+
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;  
+            border: 1px solid rgb(228, 227, 227);           
+        }   
+
+        body {  text-align: center; margin:auto; }
+
+        .border-1-blue-light { border: 2px solid rgb(194, 191, 248); }
+        .border-10-gray-light { border: 10px solid rgb(228, 227, 227); }
+
+        .container {
+            width:90%;
+            height:600px;
+            margin:auto;
+            margin-top: 40px;
+            border: 10px solid rgb(228, 227, 227);
+
+            /* display properties */
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            align-content: space-around;       
+
+        }
+
+        .container1 {
+            width: 40%;
+            
+            margin:auto;
+            padding: 2px;
+
+        }
+
+        .container1 table { text-align: center; margin:auto; margin-top:20px;margin-bottom:20px; }
+
+        .container1 table td {             
+            padding-top: 10px;
+            padding-bottom: 20px;
+            padding-left: 30px;
+            padding-right: 40px;
+        }
+
+        .container2 {
+            width: 58%;
+            margin:auto;
+            padding: 2px;            
+        }
+
+        .container2 ol { border:none; margin-top: 10px;}
+        .container2 ol li {  width:auto; margin-left: 40px; text-align: left; border:none; }
+
+        h1 { color:blue; font-size: medium; border:none;}
+
+    </style>
+
+    
+    <script type="text/javascript">  /* local JS code */
+
+        function tagNameClickArray (tag, desc) {
+            
+            console_Log('tagNameClickArray ✔','blue','white',2);
+            var elem = document.getElementsByTagName(tag);
+            for (var i=0; i < elem.length; i++ ) {
+                elem[i].onclick = function() { 
+                    alert(tag + " - " + desc + "link clicked");
+                    console_Log(tag + ' - ' + desc + 'link clicked','green','white',2);
+                }
+            }    
+
+        }
+
+        function addEventDesc() {
+
+            var eventDesc= 'Event activated by tag: ' + event.target.nodeName;
+            eventDesc += ' | tag id: ' + event.target.id; 
+            eventDesc += ' | innerHTML: ' + event.target.innerHTML; 
+            // console_Log('Event activated by: ' + event.target.id + ' | innerHTML: ' + event.target.innerHTML,'green','white',1);
+
+            // var td2 = document.getElementById("td2");
+            // td2.firstChild.nodeValue = "three";
+
+            // add li with click info
+            add_OL_LI(eventDesc);
+            addCookie();
+       
+        }
+        
+        // Function to add event listener to t
+        function load() {
+
+          console_Log('load ✔','blue','white',2);
+          var el = document.getElementById("tableEvents");
+          el.addEventListener("click", addEventDesc, false);         
+        
+        }
+
+        function add_OL_LI(mesg) {
+            var newLI = document.createElement("LI");
+            var newLI_Text = document.createTextNode(mesg);
+            newLI.appendChild(newLI_Text);
+            document.getElementById("clickHistory").appendChild(newLI);
+        }
+        
+        function addCookie() {}
+
+        function addLocalStorage() {}
+
+        function console_Log (msG,bckgCol,col,lines){
+            var msg='%c '+msG+' ';
+            var colEffects='background:'+bckgCol+'; color:'+col;
+            var linesJump='';             
+            for (i=1;i<lines;i++){
+                linesJump+='\n';
+            }
+            console.log(msg,colEffects,linesJump);                
+        }
+
+        document.addEventListener("DOMContentLoaded", load, false);
+
+</script>   
+
+
+</head>
+
+<body>
+
+<div class="container border-10-gray-light">
+
+    <div class="container1 border-1-blue-light">
+        <h1>HTML TAG'S WIDTH SOME EVENTS</h1>
+
+        <table id="tableEvents">
+            <tr><td id="td1">one</td></tr>
+            <tr><td id="td2">two</td></tr>
+        </table>
+    
+    </div>
+
+    <div class="container2 border-1-blue-light">
+
+        <h1>EVENTS HISTORY</h1>
+        <ol  id='clickHistory'>            
+        </ol>
+
+    </div>
+
+</div>    
+
+</body>
+
+</html>    

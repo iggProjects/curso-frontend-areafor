@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">	
+<title>CheckBoxGame</title>
+<link rel="icon" type="image/x-icon" href="img-igg/igg-favicon.png">
+
+<!--
+<link type="text/css" href="css/????.css" rel="stylesheet">
+<script type="text/javascript" src="js/myFunct-htmlAnalysis.js"></script>
+-->    
+<!-- 
+    links
+    https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Statements/for...in
+-->
+
+
+<style>   /* local style file */
+
+	*{
+		margin: 0px;
+		padding: 0px;
+		box-sizing: border-box;
+	}
+
+	body { text-align: center; }
+
+	p { margin-top:20px; font-size: 20px; }
+
+	.container{
+		width: 75%;
+		margin: auto;
+        margin-top:10px;
+        border: 3px solid rgb(177, 175, 175);
+	}
+
+	#form1{
+		width: 100%; 		
+		padding: 5px;
+		font-family:  Verdana, "sans-serif";
+	}
+
+	#form1 fieldset{
+        background-color: rgb(242, 243, 243);
+		border: 2px solid rgb(206, 205, 205);
+		padding: 5px;
+        margin:5px;
+	}
+    
+	#form1 legend{
+		font-size: 16px;
+		color: rgba(0,0,0,1.00);
+		font-weight: bold;
+		margin-bottom: 10px;
+	}
+	
+	#form1 label{
+		/*display: block;*/
+        /*float: left;*/
+     
+        display: inline-block;
+		/*vertical-align: top; */
+		width: 160px;
+		text-align: right;		
+		font-size: 15px;
+		padding: 5px;		
+	}
+
+	#form1 input{
+		/*display: block;*/
+		/*float: left;*/
+        
+        display: inline-block;
+		width: 200px;
+		height: 20px;
+		margin-bottom: 5px;
+		padding:5px;
+		color: black;
+		font-size: 15px;
+		border: 1px solid rgba(72,72,72,1.00);		
+	}
+
+	#form1 input[type=checkbox] {
+		border:  0px;
+		width:  15px;
+		height: 15px;
+		margin-left:10px;
+	}    
+
+	#libros {
+		font-family: Arial, Helvetica, sans-serif;		
+		width: 100%;		
+        /* border-collapse: collapse; */
+		border-collapse:separate; 
+		border-spacing:5px; 
+	}
+
+	#libros tr:nth-child(even){background-color: #f2f2f2;}
+
+	#libros tr:hover {background-color: #ddd;}
+
+	#libros th {
+		padding-top: 5px;
+		padding-bottom: 5px;		
+		text-align: center;
+		background-color: #04AA6D;
+		color: white;
+	}
+
+	#infoTable { width:50%; margin:auto; margin-top:25px; padding-left: 5px;; text-align: center; padding:5px; border: 3px solid rgb(180, 179, 179);}
+
+    #objectInfo { width:80%; margin:auto; margin-top:25px; text-align: left; padding:5px; padding-left: 20px; border: 3px solid rgb(180, 179, 179);}
+	.bt1 { padding:3px; } 
+
+	
+</style>
+
+</head>
+
+<body>
+
+<h2 style="margin-top:30px;">Box Book's Catalog</h2>	
+
+<h4 style="color:green; text-align:center; margin:5px;">( Look browser consola )</h4>	
+
+<div class="container">
+
+<form id="form1" name="form1"  method="post" onsubmit="return formValidate()" action="/action_page.php">	
+
+	<fieldset>
+		<legend>Catálogo Libros</legend>  
+		<label for="idioma">Selecciona Idioma</label>
+		<!--  TIPO CHECK -->
+		<input id='1' class="checkBox" type="checkbox" name="idioma" value="all" onclick="marca('1','all')" ><span>&nbsp;Todos</span>
+        <input id='2' class="checkBox" type="checkbox" name="idioma" value="eus" onclick="marca('2','eus')" ><span>&nbsp;Euskera</span>
+		<input id='3' class="checkBox" type="checkbox" name="idioma" value="cast" onclick="marca('3','cast')" ><span>&nbsp;Castellano</span>
+		<input id='4' class="checkBox" type="checkbox" name="idioma" value="en"  onclick="marca('4','en')" ><span>&nbsp;English</span>                    
+		<input id='5' class="checkBox" type="checkbox" name="idioma" value="fr"  onclick="marca('5','fr')" ><span>&nbsp;French</span>                    
+		<br>
+	</fieldset>	
+
+<div id="books"><table id="libros"></table></div>
+
+</form>
+
+</div>
+
+<script>
+
+	function booksTable() {
+		
+		nombLibro=['lib1','lib2','book1','Liburu1','livre1','book2','lib3','liburu2','livre2','liburu3'];
+		idiomaLibro=['castellano','castellano','english','euskera','french','english','castellano','euskera','french','euskera'];
+		idiomaLibro_radio=['cast','cast','en','eus','fr','en','cast','eus','fr','eus'];
+		editorial=['edit1','edit2','edit3','edit4','edit5','edit6','edit7','edit8','edit9','edit10'];
+		condicion=['nuevo','nuevo','usado','usado','nuevo','nuevo','usado','usado','nuevo','nuevo'];
+
+		booksTableHtml = "<table id='libros'>";
+		booksTableHtml += "<th>#</th><th>Status</th><th>idioma</th><th>Título</th><th>Editorial</th><th>Estado</th><th></th>"	
+		for (i=0; i<10; i++ ) {
+			booksTableHtml += "<tr id=row" + i + "><td>"+i+"</td><td><input id=r"+ i +" class='checkBox' type='checkbox' name='libro' value='" + idiomaLibro_radio[i] + "' readonly</td>";
+			booksTableHtml += "<td>" + idiomaLibro[i] + "</td><td>" + nombLibro[i] + "</td><td>" + editorial[i] + "</td><td>" + condicion[i] + "</td></tr>";		
+		}
+
+		booksTableHtml += "</table>";
+
+		document.getElementById("books").innerHTML = booksTableHtml;
+        // document.getElementById('row9').style.display='none';
+	}
+
+	function marca(inpId,Idioma){		
+
+        var rowNumb=0;
+
+		var tableInputRadio = document.querySelectorAll("input");        
+
+		// console.log('table input checkbox list' + tableInputRadio + ' | lenght: ' + tableInputRadio.length);
+		// viewNodeList(tableInputRadio);		 
+        // console.log('tableInputRadio.values: ' + tableInputRadio.values()); // [object Array Iterator]
+
+	    // put checked in false in all input tag's of table
+
+        var rowNumb=0;
+
+        // go through the inputs tags step by step
+        for(var inputTag of tableInputRadio.values()) {  
+
+			 // initialize inputNumber, rowVisible, rowHide
+            var inputNum=0;      
+            var rowVisible=0;
+            var rowHide=0;
+
+            if ( Idioma != 'all' ) {
+                               
+				// console_Log('Idioma es-> ' + Idioma + ' y value (idioma) es ->' + inputTag.attributes[4].value,'black','white',1);
+
+				// if input tag language equal to parameter Idioma
+                if ( inputTag.attributes[4].value == Idioma ) { 
+                    inputTag.checked=true;                       
+                    if ( rowNumb > 4 ) {  
+						// make table row visible
+                        rowVisible='row'+(rowNumb-5);
+                        console_Log('row Visible------->' + rowVisible,'blue','white',1);
+                        document.getElementById(rowVisible).style.display=''; 
+                    }               
+                  } else {
+					// hide table row  
+					inputTag.checked=false;  					  
+                    if ( rowNumb > 4 ) { 
+                        rowHide='row'+(rowNumb-5);                                                       
+                        console_Log('row Hide------->' + rowHide,'blue','white',1);
+                        document.getElementById(rowHide).style.display='none'; 
+                    }                      
+                }                 
+                  
+              } else {
+				// make visible all checkbox and all rows
+                inputTag.checked=true;  
+                inputNum=0; 
+                if ( rowNumb <= 4 ) {
+                    inputNum=rowNumb+1;
+                    console.log('VALOR INPUT PPAL ' + inputNum);
+                    document.getElementById(+inputNum).style.display=''; 
+                  } else {
+                    document.getElementById('row'+(rowNumb-5)).style.display=''; 
+                }    
+            }
+            
+			rowNumb++;
+        }
+	}
+
+    function showTableDataConsole(idTable) {
+        // console.log(idTable);
+        var infoRows="";        
+        
+        // document.getElementById('info').innerHTML = "";
+        var myTab = document.getElementById(idTable);        
+
+        // LOOP THROUGH EACH ROW OF THE TABLE AFTER HEADER.
+        for (i = 1; i < myTab.rows.length; i++) {
+
+            // GET THE CELLS COLLECTION OF THE CURRENT ROW.
+            var objCells = myTab.rows.item(i).cells;
+            console.log('tr: ' + i);
+            // LOOP THROUGH EACH CELL OF THE CURENT ROW TO READ CELL VALUES.
+            for (var j = 0; j < objCells.length; j++) {                
+                console.log('\t' + objCells.item(j).innerHTML);
+                // infoRows = infoRows + ' | ' + objCells.item(j).innerHTML;
+            }
+            // console.log('row ' + i + ' : ' + infoRows);
+            infoRows="";
+            // infoRows = infoRows + '\n';     // ADD A BREAK (TAG).                        
+        }        
+    }
+
+	function console_Log (msG,bckgCol,col,lines){
+        var msg='%c '+msG+' ';
+        var colEffects='background:'+bckgCol+'; color:'+col;
+        var linesJump=''; 
+        for (i=1;i<lines;i++){
+            linesJump+='\n';
+        }
+        console.log(msg,colEffects,linesJump);                
+    }
+
+	booksTable();	
+	showTableDataConsole("libros");	
+
+</script>
+
+</body>
+</html>

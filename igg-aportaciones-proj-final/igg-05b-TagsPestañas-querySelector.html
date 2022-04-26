@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximun-scale=1, user-scalable=no">
+    <title>Tags-Pestañas-querySelect</title>
+    <link rel="icon" type="image/x-icon" href="img-igg/igg-favicon.png">
+    <!-- <link href="css/ImgGalleryDgnDpStyle.css" rel="stylesheet" type="text/css">  -->
+    <style>
+
+    /* Para subirlo a la carpeta aportaciones, se deja el style en la página html y no usamos el link */
+
+    /* 
+        web links 
+            https://www.w3schools.com/jsref/prop_element_classlist.asp
+    */
+    
+    * {
+        box-sizing: border-box;
+    }
+
+    .container {
+      position: relative;
+    }
+
+    h3 { text-align: center; margin-top:20px; height: 25px;}
+
+    .row {         
+        width:70%; 
+        margin:auto;        
+        /* display properties*/
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: left;    
+        align-items: stretch;
+        align-content: center;
+        
+        /* border:5px gray solid;*/
+    }
+
+    .infoAmpliada {        
+    	width:70%;
+        height:auto;	    
+		margin:auto;
+        border: 1px solid rgb(220, 219, 221);
+        /* display properties    
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: stretch;
+        align-content: center;
+        */
+    }
+
+    #fotoGr  {
+        border:5px solid rgb(212, 211, 211);   
+        width:auto;     
+        padding:20px;
+        /* display properties */    
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: stretch;
+        align-content: center; 
+    }
+
+    #fotoGr img { width:85%; height: 450px;;} 
+
+    .cursor {
+        cursor: pointer;
+    }
+
+    .columna {
+        float: left;
+        width: 12%;
+        border: 1px solid rgb(172, 230, 248);
+        border-top-right-radius: 15px;
+        border-left:none;
+        margin-left:-3px;
+    }
+
+    .c1 {
+        border-left: 1px solid rgb(165, 220, 252);
+        margin-left:0;
+    }
+
+    .columna p {
+        width:auto;
+        /* display properties*/    
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: stretch;
+        align-content: center;
+    }
+
+    .hideImg { display: none; background-color: transparent; }
+    .hideTag { background-color: transparent; }
+
+    .show { background-color: #809fff;}
+
+    hr{
+      margin:0px; height:30px;border-width:0;color:rgb(88, 22, 241);background-color:rgb(48, 47, 47)
+    }
+
+    #name-text {
+        text-align: left;
+        font-size: 20px;
+        margin:auto;
+        padding-left: 20px;
+        width:70%;
+        height:40px;
+        border-width:0;
+        color:white;
+        background-color:rgb(150, 109, 245);
+        
+        /* display properties*/
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: left;
+        align-items: stretch;
+        align-content: center;			
+    }
+
+    #name-text { text-align: left;}
+
+    #name-text::before { content: "Opción Seleccionada: "; } 
+
+    .titleInfo { color:blue; font-size: 20px;}
+
+    /* ZOOM EFFECTS */
+    .zoom {
+      /* 
+      padding: 50px;
+      background-color: green; 
+      */
+      transition: transform .2s;
+      width: 30px;
+      height: 40px;
+      margin: 0 auto;      
+    }
+
+    .zoom:hover {
+      -ms-transform: scale(1.2); /* IE 9 */
+      -webkit-transform: scale(1.2); /* Safari 3-8 */
+      transform: scale(1.2); 
+      opacity:1 !important;
+    }
+    
+    </style>
+</head>
+
+<body>
+
+    <h3>querySelect para Tags-Pestañas</h3>
+    
+    <div class="container">
+
+        <div class="row">
+            <div id="tag1" class="columna hideTag c1">
+                <p id="ptag1" class="cursor zoom" onclick="selecInfo(1)">Opción 1</p>
+            </div>
+            <div id="tag2" class="columna hideTag">
+                <p id="ptag2" class="cursor zoom"  onclick="selecInfo(2)">Opción 2</p>
+            </div>          
+            <div id="tag3" class="columna hideTag">
+                <p id="ptag3" class="cursor zoom"  onclick="selecInfo(3)">Opción 3</p>
+            </div>
+            <div id="tag4" class="columna hideTag">
+                <p id="ptag4" class="cursor zoom"  onclick="selecInfo(4)">Opción 4</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="name-text"></div>   
+      
+        <div class="infoAmpliada">
+
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ad labore repellat iure, minima facilis, asperiores soluta voluptate modi ex, animi consequatur. Eligendi, reprehenderit in! Voluptatibus esse eius placeat natus.</p>   
+
+            <div id="fotoGr" ><img id="imgGr"></div>
+
+        </div>    
+
+        <div>
+            <div class="hideImg"><img id="foto1"  src="imagenes/foto01.jpg"><div>
+            <div class="hideImg"><img id="foto2"  src="imagenes/foto02.jpg"></div>
+            <div class="hideImg"><img id="foto3"  src="imagenes/foto03.jpg"></div>
+            <div class="hideImg"><img id="foto4"  src="imagenes/foto04.jpg"></div>
+        </div>
+
+    </div>
+
+    <script>  // functions with html attributes 
+
+        nTag=1; 
+
+        function carga_inicial(){
+                                 
+            // Ejecuto función que coloca la foto en el div "infoAmpliada" y actualiza los "val" y "opacity" respectivos                     
+            selecInfo(1);        
+        }
+
+        // coloca la foto elegida en el div de foto ampliada  
+        function selecInfo(numTag) {		
+
+            var tagList = document.querySelectorAll('.columna');
+            for (var tag of tagList.values()) {                
+                tag.className="columna";
+            }            
+            document.getElementById('tag'+numTag).className="columna show";
+
+            document.getElementById('tag1').style.borderLeft="1px solid rgb(172, 230, 248)"; 
+
+            document.getElementById('imgGr').src=document.getElementById('foto'+numTag).src;
+            document.getElementById('name-text').innerHTML="<span>&nbsp;&nbsp;" + numTag + "</span>";
+           
+        }
+
+
+        // al cargar la página invocamos la función carga_inicial() para llenar el div con la foto grande
+        window.onload = carga_inicial;        
+        
+    </script>
+
+</body>
+</html>

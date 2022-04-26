@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="es">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">	
+    <title>reading JSON's</title>
+    <link rel="icon" type="image/x-icon" href="img-igg/igg-favicon.png">
+    
+    <script type="text/javascript" src="./assets/js/myFunct-htmlAnalysis.js"></script>
+    <script type="text/javascript" src="./assets/js/my_JSON_functions.js"></script>
+
+    <style>
+      .divDemo { margin-bottom: 20px; ; border:5px solid gray; padding:5px;} 
+      .json_text { text-align:left; margin:auto; margin-top:10px; margin-left:20px; color:blue} 
+      .json_desc { text-align:left; margin:auto; margin-top:10px; margin-left:20px; font-size: 12px;} 
+    </style> 
+
+</head>
+
+<body>
+
+    <h3 style="margin-top: 40px; color:green; text-align:center;">( Look browser consola )</h3>	
+
+    <div style="text-align:left; margin:auto; margin-top:20px; margin-left:100px;">
+        <h2>JavaScript Objects</h2>
+        <p>JSON object properties.</p>
+
+    <div class="divDemo">
+      <p id="demo_s1" class="json_text"></p>
+      <p id="demo_s2" class="json_desc"></p>
+    </div>   
+
+    <div class="divDemo">
+      <p id="demo1" class="json_text"></p>
+      <p id="demo2" class="json_desc"></p>
+    </div>        
+
+    <div class="divDemo">
+      <p id="demo3" class="json_text"></p>
+      <p id="demo4" class="json_desc"></p>
+    </div>
+
+    <div class="divDemo">
+      <p id="demo5" class="json_text"></p>
+      <p id="demo6" class="json_desc"></p>
+    </div>        
+
+    <div class="divDemo">
+      <p id="demo7" class="json_text"></p>
+      <p id="demo8" class="json_desc"></p>
+    </div>        
+
+
+    </div>
+
+<script>
+
+    var tittle_text="";    
+
+    // FIRST JSON, OF ARRAY FORM
+
+    let json_simple = [{"num":[ "cero", "uno", "dos"]},{"letra":["a","b","c","d"]}];
+
+    let json_ex = [ {"id" : "1","msg": "hi","tid" : "2013-05-05 23:35", "fromWho": "hello1@email.se"},
+            {"id" : "2","msg": "there","tid" : "2013-05-05 23:45","fromWho": "hello2@email.se"},
+            {"user": {"name":"Iñaki", "age":10} }, {0: ["cero","uno"] }, {"col": ["white","black"] } ] ;
+ 
+
+
+    let json_ex1={"source": "/var/log/apache2/git.1234.de-443-access.json","data": {"http_code": 204,"pid": "-","request_id": "-","log_level": "-","body_size": 0,"host": "git.1234.de","peer_ip": "10.200.13.212","duration": 1693,"source": "-","client_port": "-","error_message": "-","client_ip": "10.200.13.333","elem": {"pais": "eus","continente": "ue", "moneda": {1:"euro",2:"dólar"}}}, "path": "/var/log/apache2"}
+    
+    let json_ex2 = { 
+        "members" : [ 
+            {"name" : "Molecule Man","age" : 29,"secretIdentity" : "Dan Jukes","powers" : ["Radiation resistance", "Turning tiny", "Radiation blast" ] }, 
+            {"name" : "Molecule Man","age" : 29,"secretIdentity" : "Dan Jukes","powers" : ["Radiation resistance", "Turning tiny", "Radiation blast" ] } 
+        ] 
+    } ;       
+
+
+    let json_ex3={
+  "squadName" : "Super Hero Squad",
+  "homeTown" : "Metro City",
+  "formed" : 2016,
+  "secretBase" : "Super tower",
+  "active" : true,
+  "members" : [
+    {
+      "name" : "Molecule Man",
+      "age" : 29,
+      "secretIdentity" : "Dan Jukes",
+      "powers" : [
+        "Radiation resistance",
+        "Turning tiny",
+        "Radiation blast"
+        ]   
+    },
+    {
+      "name" : "Madame Uppercut",
+      "age" : 39,
+      "secretIdentity" : "Jane Wilson",
+      "powers" : [
+        "Million tonne punch",
+        "Damage resistance",
+        "Superhuman reflexes"
+        ]
+    },
+    {
+      "name" : "Eternal Flame",
+      "age" : 1000000,
+      "secretIdentity" : "Unknown",
+      "powers" : [
+        "Immortality",
+        "Heat Immunity",
+        "Inferno",
+        "Teleportation",
+        "Interdimensional travel"
+      ]
+    }
+    ]   
+}
+
+    // writing json_ex in html
+    
+    tittle_text = `<b><span style='color:blue;'>1.- Length of JSON:</span> ${json_simple.length}</b><br><br>`;
+    document.getElementById("demo_s1").innerHTML = tittle_text + JSON.stringify(json_simple,null,4);
+    console_Log('MAIN: Entrando al 1er JSON','blue','white',2);
+    // call to write JSON
+    write_Json_as_Text(json_simple,'demo_s2');   
+
+    // writing json_ex in html
+    
+    tittle_text = `<b><span style='color:blue;'>1.- Length of JSON:</span> ${json_ex.length}</b><br><br>`;
+    document.getElementById("demo1").innerHTML = tittle_text + JSON.stringify(json_ex,null,4);
+    console_Log('MAIN: Entrando al 2do JSON','blue','white',2);
+    // call to write JSON
+    write_Json_as_Text(json_ex,'demo2');   
+
+    // writing json_ex1 in html
+
+    tittle_text = `<b><span style='color:blue;'>2.- Length of JSON:</span> ${Object.keys(json_ex1).length}</b><br><br>`;
+    document.getElementById("demo3").innerHTML = tittle_text + JSON.stringify(json_ex1,null,4);
+    console_Log('MAIN: Entrando al 3er JSON','blue','white',2);
+    // call to write JSON
+    write_Json_as_Text(json_ex1,'demo4');   
+
+    // writing json_ex2 in html
+
+    tittle_text = `<b><span style='color:blue;'>2.- Length of JSON:</span> ${Object.keys(json_ex2).length}</b><br><br>`;
+    document.getElementById("demo5").innerHTML = tittle_text + JSON.stringify(json_ex2,null,4);
+    console_Log('MAIN: Entrando al 4to JSON','blue','white',2);
+    // call to write JSON
+    write_Json_as_Text(json_ex2,'demo6');   
+
+    // writing json_ex3 in html
+    tittle_text = `<b><span style='color:blue;'>2.- Length of JSON:</span> ${Object.keys(json_ex3).length}</b><br><br>`;
+    document.getElementById("demo7").innerHTML = tittle_text + JSON.stringify(json_ex3,null,4);
+    console_Log('MAIN: Entrando al 5to JSON','blue','white',2);
+    // call to write JSON
+    write_Json_as_Text(json_ex3,'demo8');   
+
+
+
+    // USING JSON.parse
+    write_json('',json_simple);
+
+    write_json('',json_ex);    
+
+    write_json('',json_ex1);
+
+    write_json('',json_ex2);
+
+    write_json('',json_ex3);
+
+    
+
+</script>
+
+</body>
+</html>

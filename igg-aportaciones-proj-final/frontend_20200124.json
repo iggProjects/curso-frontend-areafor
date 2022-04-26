@@ -1,0 +1,160 @@
+{"curso":"FRONTEND",
+"fecha_inicio" : "2022-01-24",
+
+"tutor" : 
+    {   
+        "Nombre":"Alberto Mozo",
+        "email" : "albertomozodocente@gmail.com",
+        "linked" : "https://www.linkedin.com/in/alberto-mozo-avellaned-80615713/",
+        "github" : "https://github.com/albertomozo",
+        "github_json": "https://api.github.com/users/albertomozo"    
+    },
+
+"alumnos" : [
+        {
+            "Nombre":"Super Elena",
+            "email" : "Alumno1@gmail.com",
+            "linked" : "https://www.linkedin.com/",
+            "github" : "https://github.com/elevi1234567",
+            "github_json": "https://api.github.com/users/elevi1234567",                
+            "inicio" : {    
+                "html" : 1,
+                "css" : 1,
+                "JS" : 1,
+                "Vue" : 3
+            },
+            "fin" : {     
+                "html" : 4,
+                "css" : 4,
+                "JS" : 4,
+                "Vue" : 4 
+            }
+        
+        },
+        {
+             "Nombre":"Katheryn Star",
+            "email" : "Alumno2@gmail.com",
+            "linked" : "https://www.linkedin.com/",
+            "github" : "https://github.com/kgsoto",
+            "github_json": "https://api.github.com/users/kgsoto",            
+            "inicio" : {     
+                "html":2,
+                "css" :3,
+                "JS" : 1,
+                "Vue" : 3
+            },
+            "fin" :{     
+                "html" : 4,
+                "css" : 4,
+                "JS" : 4,
+                "Vue" : 4 
+            } 
+        
+        },
+        {
+            "Nombre":"Franklin Montoya",
+           "email" : "Alumno3@gmail.com",
+           "linked" : "https://www.linkedin.com/",
+           "github" : "https://github.com/F7ank",
+           "github_json": "https://api.github.com/users/F7ank",           
+           "inicio" : {     
+               "html":2,
+               "css" :3,
+               "JS" : 1,
+               "Vue" : 3
+           },
+           "fin" :{     
+               "html" : 4,
+               "css" : 4,
+               "JS" : 4,
+               "Vue" : 4 
+           } 
+       
+       },
+       {
+            "Nombre":"Igor Aranaz",
+            "email" : "Alumno4@gmail.com",
+            "linked" : "https://www.linkedin.com/",
+            "github" : "https://github.com/LiquidArtDevelopers",
+            "github_json": "https://api.github.com/users/LiquidArtDevelopers",            
+            "inicio" : {     
+                "html":2,
+                "css" :3,
+                "JS" : 1,
+                "Vue" : 3
+            },
+            "fin" :{     
+                "html" : 4,
+                "css" : 4,
+                "JS" : 4,
+                "Vue" : 4 
+            } 
+   
+        },  
+
+        {
+            "Nombre":"Jean Pool Guerrero",
+            "email" : "Alumno5@gmail.com",
+            "linked" : "https://www.linkedin.com/",
+            "github" : "https://github.com/jeanpoolgc",
+            "github_json": "https://api.github.com/users/jeanpoolgc",                        
+            "inicio" : {     
+                "html":2,
+                "css" :3,
+                "JS" : 1,
+                "Vue" : 3
+            },
+            "fin" :{     
+                "html" : 4,
+                "css" : 4,
+                "JS" : 4,
+                "Vue" : 4 
+            } 
+   
+        },  
+
+        {
+            "Nombre":"Darren MDNGN",
+            "email" : "Alumno6@gmail.com",
+            "linked" : "https://www.linkedin.com/",
+            "github" : "https://github.com/MDMGN",
+            "github_json": "https://api.github.com/users/MDMGN",                        
+            "inicio" : {     
+                "html":2,
+                "css" :3,
+                "JS" : 1,
+                "Vue" : 3
+            },
+            "fin" :{     
+                "html" : 4,
+                "css" : 4,
+                "JS" : 4,
+                "Vue" : 4 
+            } 
+   
+        },
+
+        {
+            "Nombre":"Iñaki GG",
+            "email" : "Alumno7@gmail.com",
+            "linked" : "https://www.linkedin.com/",
+            "github" : "https://github.com/iggProjects",
+            "github_json": "https://api.github.com/users/iggProjects",            
+            "inicio" : {     
+                "html":2,
+                "css" :3,
+                "JS" : 1,
+                "Vue" : 3
+            },
+            "fin" :{     
+                "html" : 4,
+                "css" : 4,
+                "JS" : 4,
+                "Vue" : 4 
+            } 
+   
+        }        
+
+    ]
+}
+

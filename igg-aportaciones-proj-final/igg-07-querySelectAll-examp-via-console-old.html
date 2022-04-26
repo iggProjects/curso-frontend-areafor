@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">	
+<title>querySelectExamp</title>
+<link rel="icon" type="image/x-icon" href="img-igg/igg-favicon.png">
+
+<!--
+<link type="text/css" href="css/????.css" rel="stylesheet">
+<script type="text/javascript" src="js/myFunct-htmlAnalysis.js"></script>
+-->
+
+<!-- 
+    links
+    https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Statements/for...in
+	https://www.codegrepper.com/code-examples/javascript/queryselector+parameters
+	https://developer.mozilla.org/en-US/docs/Web/API/Element/querySelectorAll
+	https://stackoverflow.com/questions/34001917/queryselectorall-with-multiple-conditions
+	https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/@@iterator
+
+-->
+
+
+<style>   /* local style file */
+
+	*{
+		margin: 0px;
+		padding: 0px;
+		box-sizing: border-box;
+	}
+
+	.container{
+		width: 50%;
+		margin: auto;
+        margin-top:30px;
+        border: 3px solid rgb(177, 175, 175);
+	}
+
+	#form1{
+		width: 100%; 		
+		padding: 5px;
+		font-family:  Verdana, "sans-serif";
+	}
+
+	#form1 fieldset{
+        background-color: rgb(242, 243, 243);
+		border: 2px solid rgb(206, 205, 205);
+		padding: 5px;
+        margin:5px;
+	}
+    
+	#form1 legend{
+		font-size: 16px;
+		color: rgba(0,0,0,1.00);
+		font-weight: bold;
+		margin-bottom: 10px;
+	}
+	
+	#form1 label{
+		/*display: block;*/
+        /*float: left;*/
+     
+        display: inline-block;
+		/*vertical-align: top; */
+		width: 160px;
+		text-align: right;		
+		font-size: 15px;
+		padding: 5px;
+		border: 1px solid rgb(149, 132, 247);
+	}
+
+	#form1 input{
+		/*display: block;*/
+		/*float: left;*/
+        
+        display: inline-block;
+		width: 200px;
+		height: 25px;
+		margin-bottom: 10px;
+		padding:5px;
+		color: black;
+		font-size: 15px;
+		border: 1px solid rgba(72,72,72,1.00);		
+	}
+
+	#form1 input[type=radio] {
+		border:  0px;
+		width:  15px;
+		height: 15px;
+		margin-left:10px;
+	}
+    
+	#form1 textarea{
+		display: inline-block;
+        width: 300px;	
+		margin-left:180px;	
+    }
+
+	#form1 input.C_P{
+		width: 90px;
+		font-size: 12px;
+	}
+
+	#form1 input.boton{
+		background-color: rgba(245,247,248,1.00);
+		margin: 10px 10px;
+		color: rgba(0,0,0,1.00);		
+		padding:5px;
+		height: auto;
+		width: 100px;  
+		border: 1px solid rgba(51,50,50,1.00); 
+		border-radius: 10px;   
+	}
+	
+	#form1 input.boton:hover{
+		background-color: rgb(196, 181, 247);
+	}
+   
+    .centrar{
+        text-align: center;
+    }
+
+	#infoTable { width:50%; margin:auto; margin-top:25px; padding-left: 5px;; text-align: center; padding:5px; border: 3px solid rgb(180, 179, 179);}
+
+    #objectInfo { width:80%; margin:auto; margin-top:25px; text-align: left; padding:5px; padding-left: 20px; border: 3px solid rgb(180, 179, 179);}
+	.bt1 { padding:3px; } 
+
+	
+</style>
+
+</head>
+
+<body>
+
+<h4 style="color:green; text-align:center;">( Look browser consola )</h4>
+
+<div class="container">
+
+	<form id="form1" name="form1"  method="post" action="/action_page.php">	
+
+		<fieldset id="field1">
+		  <legend id="leg1">Datos Personales</legend>  
+			
+		  <label for="nom_apel">Nombre y Apellido:</label>
+		  <input type="text" name="nom_apel" formIndex="2" placeholder="Nombre y Apellido" required>
+		  <br>
+	
+		  <label for="edad">Edad (opcional):</label>
+		  <input type="number" name="edad" placeholder="Edad (opcional)">
+		  <br>
+		  
+		  <label for="tlf">Teléfono:</label>
+		  <input type="number" name="tlf" placeholder="Tlf">
+		  <br>
+				
+		  <label for="email">Email:</label>
+		  <input type="email" name="email" placeholder="Email" required>
+		  <br>
+	
+		  <label for="direcc">Dirección:</label>
+		  <input type="text" name="direcc" placeholder="Dirección">
+		  <br>
+		  
+		  <label for="poblacion">Población:</label>
+		  <input type="text" name="poblacion" id="Pob" placeholder="Población">
+		  &nbsp;&nbsp;
+		  <label for="cod-pos">Cod Postal:</label>
+		  <input type="text" name="cod-pos" id="C_P" class="C_P" placeholder="Código Postal">
+		  <br>
+	
+		  <label for="provincia">Provincia:</label>
+		  <!-- TIPO SELECT -->
+		  <br>
+		  
+		  <label for="idioma">Idioma:</label>
+		  <!--  TIPO CHECK -->
+		  <input class="radioMenu" type="radio" name="eus" value="Euskera" checked><span>&nbsp;euskera</span>
+		  <input class="radioMenu" type="radio" name="esp" value="Español" ><span>&nbsp;Español</span>
+		  <input class="radioMenu" type="radio" name="en" value="English" ><span>&nbsp;English</span>                    
+		  <input class="radioMenu" type="radio" name="fr" value="French" ><span>&nbsp;French</span>                    
+		  <br>
+	
+		
+		</fieldset>
+	
+		<fieldset id="field2">
+			<legend id="leg2">Menu a comprar</legend> 
+			  
+			<label for="menu">Opción: </label>
+			<input class="radioMenu" type="radio" name="menu" value="Sano" checked onclick="console.log('menu ' + 1), seleccionarMenu(1)"/><span>&nbsp;Sano</span>
+			<input class="radioMenu" type="radio" name="menu" value="Full" onclick="console.log('menu ' + 2), seleccionarMenu(2)"/><span>&nbsp;Full</span>
+			<input class="radioMenu" type="radio" name="menu" value="medioMenu" onclick="console.log('menu ' + 3), seleccionarMenu(3)"/><span>&nbsp;medio menu</span>                    
+			<br><br>
+			<label for="detalleMenu">Platos: </label>
+			<br>
+			<textarea name="detalleMenu" id="detalleMenu" rows="7" readonly></textarea>
+			<br><br>
+			<label for="costoMenu">Precio (€):</label>                    
+			<input name="costoMenu" id="costoMenu" readonly>
+	
+		</fieldset>      
+	
+		<fieldset id="field3">	
+			<legend id="leg3">Submit</legend>  
+			<input class="boton" type="button"  name="check" id="check"  value="Chequear" onclick="formCheck()">
+			<input class="boton" type="submit" name="submit" id="submit" value="Enviar" >
+			<input class="boton" type="reset"  name="reset"  id="reset"  value="Borrar" >
+		</fieldset>
+	
+	</form>
+	
+	<p><button type="button" class="bt1" value="ShowInputData" onclick="">Show Input Data</button></p>
+
+</div>
+
+<script>
+
+    function querySel(idTag,tagSelect) {
+		/*
+			Function to know the DOM structure of, in this case, form tag. 
+		*/
+
+		// Checking functions parameters
+		console_Log('idTag es: ' + idTag + ' | nodeName: ' +document.getElementById(idTag).nodeName,'black','yellow',1);
+		console_Log('tagSelect es: ' + tagSelect,'blue','white',2);
+		
+		// IN THIS CASE, "var x" get object [HTMLFieldSetElement]
+		var x = document.getElementById(idTag);
+		console_Log('getElementByID: ' + x + ' | nodeName: ' + x.nodeName,'green','white',2);
+
+		// "var queryList" get [object NodeList] 
+		var queryList = x.querySelectorAll(tagSelect);
+		console_Log('queryList: ' + queryList + ' | lenght: ' + queryList.length,'yellow','black',2);
+
+		// Loop through array elements of pairs 'attribute,value'
+        var i=1;
+		console_Log('tag Parent: ' + idTag + ' | tag querySelect: ' + tagSelect,'blue','white',2)
+        for (var tag of queryList.values()) {
+			console_Log(i + ' tag: ' + tag.nodeName + ', id->  ' + tag.id,'orange','black',1);   
+			for ( var j=0; j<tag.attributes.length; j ++) {
+            	console_Log(j + ' - attribute: ' + tag.attributes[j].nodeName + ', value: '+ tag.attributes[j].value,'','red',1);   
+			}		
+            i++;
+        }    
+    }
+
+	// Calling querySel to view 3 fieldsets of FORM
+	querySel('field1','input,label');
+	querySel('field2','input,label');
+	querySel('field3','input,label,legend');
+
+	function console_Log (msG,bckgCol,col,lines){
+		var linesJump=''; 
+		for (i=1;i<parseInt(lines);i++){
+            linesJump+='\n';
+        }
+        var msg='%c '+msG+' ' + linesJump;
+        var colEffects='background:'+bckgCol+'; color:'+col; 
+        console.log(msg,colEffects);                
+    }
+
+</script>
+
+</body>
+</html>

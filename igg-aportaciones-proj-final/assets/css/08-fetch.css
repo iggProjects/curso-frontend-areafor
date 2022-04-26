@@ -1,0 +1,207 @@
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+.container {
+  padding: 10px;
+  font-family: helvetica;
+}
+
+header {
+  border-bottom: 10px solid #e7e5e5;
+  height: auto;
+  padding: 20px;
+}
+
+.disp_center {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: stretch;
+}
+
+header div {
+  width: 25%;
+}
+
+header .toggle-container {
+  text-align: right;
+}
+
+#pageTitle {
+  margin: auto;
+  text-align: center;
+  color: #a31313;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+section {
+  border: 10px solid #e9e8e8;
+  margin: auto;
+  text-align: center;
+}
+section article {
+  width: 80%;
+  border: 1px solid gray;
+}
+
+#profesor {
+  width: 40%;
+}
+
+#alumnos {
+  width: 80%;
+}
+
+header {
+  margin: 30px;
+  display: flex;
+  flex-direction: row;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: auto;
+  margin-top: 20px;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+  text-align: center;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+th {
+  background-color: #80c4fc;
+  color: white;
+}
+
+h1, h2 {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: blue;
+}
+
+#logotipo {
+  font-family: "Press Start 2P", cursive;
+  margin: auto;
+  border: 1px solid;
+}
+
+#profesor {
+  margin: auto;
+  padding: 30px;
+}
+
+#profesor ul, #alumnos ul {
+  list-style: none;
+  display: table;
+  vertical-align: middle;
+}
+
+#alumnos article {
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid #afaffd;
+}
+
+#barra {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+nav ul {
+  margin-top: 10px;
+}
+nav ul li {
+  display: inline;
+  text-align: center;
+}
+
+#rel_icons {
+  height: 40px;
+}
+
+li a {
+  margin-left: 20px;
+}
+
+li a img {
+  margin-left: 5px;
+}
+
+#liName {
+  margin-top: 10px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.imagengithub {
+  border-radius: 50%;
+  width: 70px;
+}
+
+@font-face {
+  font-family: "punk";
+  src: url("../font/Punkkid/punk_kid.ttf") format("truetype");
+  /* OJO!!!!  las rutas son relativas al css */
+}
+.kidpunk {
+  font-family: "punk";
+}
+
+.theme-btn {
+  width: 3em;
+  height: 3em;
+  padding: 0.5em;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
+
+.theme-btn img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+:root,
+:root.light {
+  --bg-color: #fff;
+  --text-color: #123;
+}
+
+:root.dark {
+  --bg-color: #121212;
+  --text-color: #45ADFE;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+button {
+  color: var(--text-color);
+}
+
+svg {
+  color: var(--text-color);
+  background-color: var(--bg-color);
+}
+
+/*# sourceMappingURL=08-fetch.css.map */

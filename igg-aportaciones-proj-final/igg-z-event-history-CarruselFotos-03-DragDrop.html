@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximun-scale=1, user-scalable=no">
+    <title>carruselClickHistory</title>
+
+    <link rel="icon" type="image/x-icon" href="img-igg/igg-favicon.png">
+
+    <link href="css/carrusel-css.css" rel="stylesheet" type="text/css">
+
+    <script type="text/javascript" src="./assets/js/myFunct-htmlAnalysis.js"></script>
+    <script type="text/javascript" src="./assets/js/my_cookies.js"></script>
+    <script type="text/javascript" src="./assets/js/my_Drag_Drop_functions.js"></script>
+    <script type="text/javascript" src="./assets/js/my_carrusel_functions.js"></script>
+
+    <style>
+
+    /* Para subirlo a la carpeta aportaciones, se deja el style en la página html y no usamos el link */
+
+    /* 
+      STYLE DE LOS CONTAINERS  
+    */ 
+
+    * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;  
+            /* border: 1px solid rgb(228, 227, 227);           */
+        }   
+
+        body {  text-align: center; margin:auto; }
+
+        .border-1-blue-light { border: 2px solid rgb(194, 191, 248); }
+        .border-5-orange-light { border: 10px solid #ffa366; }
+        .border-5-green-light { border: 10px solid #88cc00; }
+        .border-10-gray-light { border: 10px solid rgb(228, 227, 227); }
+
+        .container {
+            width:98%;
+            height:auto;
+            margin:auto;
+            margin-top: 20px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            border: 10px solid rgb(228, 227, 227);
+
+            /* display properties */
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            align-content: space-around;       
+
+        }
+
+        .container-carrusel {
+            width: 55%;            
+            margin:auto;
+            padding: 2px;
+
+        }
+
+        .container2 {
+            width: 40%;
+            margin:auto;
+            padding: 2px;            
+        }
+
+        .container2 ul { margin: 5px;}
+
+        .container2 ol { border:none; margin-top: 10px;}
+        .container2 ol li {  width:auto; margin-left: 40px; text-align: left; border:none; }
+
+        h1 { color:blue; font-size: medium; border:none;}
+    
+    </style>
+
+    <script>
+
+      function tagNameClickArray (tag, desc) {
+
+        console_Log('tagNameClickArray ✔','blue','white',2);
+        var elem = document.getElementsByTagName(tag);
+        for (var i=0; i < elem.length; i++ ) {
+            elem[i].onclick = function() { 
+                alert(tag + " - " + desc + "link clicked");
+                console_Log(tag + ' - ' + desc + 'link clicked','green','white',2);
+            }
+        }    
+
+      }
+
+      function addEventDesc() {
+
+          var eventDesc= 'Event activated by tag: ' + event.target.nodeName;
+          eventDesc += ' | tag id: ' + event.target.id; 
+          eventDesc += ' | event: ' + event.target; 
+          eventDesc += ' | event src: ' + event.target.src;
+          eventDesc += ' | event time: ' + event.timeStamp;
+          eventDesc += ' | event className: ' + event.target.className;
+          eventDesc += ' | event style: ' + event.target.style;  
+          eventDesc += ' | event coord X,Y: (' + event.clientX + ',' +event.clientX + ')'; 
+          eventDesc += ' | event duration: ' + event.durationchange;   
+          // eventDesc += ' | innerHTML: ' + event.target.innerHTML; 
+          console_Log('Event activated by: ' + event.target.id + ' | innerHTML: ' + event.target.innerHTML,'green','white',1);
+
+          // add li with event info in id="event_history" 
+          add_OL_LI(eventDesc);
+
+          // update cookies
+          var cookie_name='visitas'; 
+          upd_cookie(cookie_name);
+                   
+          // update JSON in Local Storage
+          // upd_LocalStorage(n);
+
+      }
+
+      // Function to add event listener to t
+      function load_Listener() {
+
+        console_Log('function load_Listener ✔','blue','white',2);
+
+        var el = document.getElementById("div-ppal");
+        el.addEventListener("click", addEventDesc, false);         
+        el.addEventListener("onclick", addEventDesc, false);     
+        el.addEventListener("dragstart", addEventDesc, false);                   
+        el.addEventListener("drop", addEventDesc, false);                   
+
+      }
+
+      function add_OL_LI(mesg) {
+          var newLI = document.createElement("LI");
+          var newLI_Text = document.createTextNode(mesg);
+          newLI.appendChild(newLI_Text);
+          document.getElementById("event_History").appendChild(newLI);
+      }
+
+      // upd_Cookie(cookie_sel);
+
+      // upd_LocalStorage(data_sel);
+
+      function listAllEventListeners() {
+
+          /* https://www.sqlpac.com/en/documents/javascript-listing-active-event-listeners.html*/
+
+          const allElements = Array.prototype.slice.call(document.querySelectorAll('*'));
+          allElements.push(document);
+          allElements.push(window);
+
+          const types = [];
+          var m=1; 
+          var n=1;
+          for (let ev in window) {
+            console.log( m + '.- Ev: ' + ev);
+            if (/^on/.test(ev)) { 
+              types[types.length] = ev; 
+              console_Log('\t' + n + '.- /^on/.test(ev) ' + /^on/.test(ev),'','red',2);
+              n++;
+            }
+            m++;
+          }
+
+          let elements = [];
+          for (let i = 0; i < allElements.length; i++) {
+            const currentElement = allElements[i];
+            for (let j = 0; j < types.length; j++) {
+              if (typeof currentElement[types[j]] === 'function') {
+                elements.push({
+                  "node": currentElement,
+                  "type": types[j],
+                  "func": currentElement[types[j]].toString(),
+                });
+              }
+            }
+          }
+
+          var m=1;
+          console_Log('-----------------','','',2);
+          console_Log('All events:','blue','white',2);
+          for (elem of elements){
+            console_Log(m + '.-' + elem['node'] + ', type: ' + elem['type']  + ', func:' + elem['func'],'','',1);
+            m++;
+          }
+          // console.log('all events-> node: ' + elements[0]['node'] + ', type: ' + elements[0]['type']  + ', func:' + elements[0]['func']);
+
+          return elements.sort(function(a,b) {
+            return a.type.localeCompare(b.type);
+          });
+      
+      }
+
+    </script>
+
+</head>
+
+<body>
+
+  <h4 style="margin-top: 20px; color:green; text-align:center;">( Look browser consola )</h4>	
+
+    <div id="div-ppal" class="container"> 
+      
+      <div class="container-carrusel border-5-green-light">
+        <h3>Galería Fotos with Drag & Drop</h3>
+        <div class="fotoAmpliada" id="dropHere" ondrop="drop_handler(event);" ondragover="dragover_handler(event);">
+          <div id="name-text"></div>
+              <img id="fotoGr" src="imagenes-carrusel/foto01.jpg" val="1">
+          <a class="ant" onclick="moverFoto(-1)">❮</a>
+          <a class="sig" onclick="moverFoto(1)">❯</a> 
+        </div>
+      
+        <!-- <hr>  -->
+        <div id="sep-title"></div>
+
+        <div class="row">
+          <div class="columna">
+            <img id="foto1" class="carrusel cursor zoom" src="imagenes-carrusel/foto01.jpg" val="1" draggable="true" ondragstart="dragstart_handler(event);" ondragend="dragend_handler(event);" onclick="ampliaFoto(1)" alt="foto1" title="foto1">
+          </div>
+          <div class="columna">
+            <img id="foto2" class="carrusel cursor zoom" src="imagenes-carrusel/foto02.jpg" val="2" draggable="true" ondragstart="dragstart_handler(event);" ondragend="dragend_handler(event);" onclick="ampliaFoto(2)" alt="foto2" title="foto2">
+          </div>
+          <div class="columna">
+            <img id="foto3" class="carrusel cursor zoom" src="imagenes-carrusel/foto03.jpg" val="3" draggable="true" ondragstart="dragstart_handler(event);" ondragend="dragend_handler(event);" onclick="ampliaFoto(3)" alt="foto3" title="foto3">
+          </div>
+          <div class="columna">
+            <img id="foto4" class="carrusel cursor zoom" src="imagenes-carrusel/foto04.jpg" val="4" draggable="true" ondragstart="dragstart_handler(event);" ondragend="dragend_handler(event);" onclick="ampliaFoto(4)" alt="foto4" title="foto4">
+          </div>
+          <div class="columna">
+            <img id="foto5" class="carrusel cursor zoom" src="imagenes-carrusel/foto05.jpg" val="5" draggable="true" ondragstart="dragstart_handler(event);" ondragend="dragend_handler(event);" onclick="ampliaFoto(5)" alt="foto5" title="foto5">
+          </div>    
+        </div>
+      </div>
+
+      <div class="container2 border-5-orange-light">
+
+        <h1>EVENTS HISTORY</h1>
+        <ol  id='event_History'></ol>
+        
+        <h1>COOKIES</h1>
+        <div id="my_cookies"></div>
+
+      </div>
+	
+    </div>  
+
+  <script>  // carga inicial     
+
+    function carga_inicial(){        
+        
+        // Selecciono la foto a ampliar al azar
+        nFot = Math.floor( Math.random() * 5 ) + 1;
+        document.getElementById("foto"+nFot).style.opacity="1";  
+        // console.log('nFot: ' + nFot); 
+        
+        // Ejecuto función que coloca la foto en el div "fotoAmpliada" y actualiza los "val" y "opacity" respectivos                     
+        ampliaFoto(nFot);    
+
+
+        load_Listener();
+
+
+        listAllEventListeners();
+        // document.addEventListener("DOMContentLoaded", load, false);
+    }
+
+    // al cargar la página invocamos la función carga_inicial() para llenar el div con la foto grande
+    var nFot=1;
+    window.onload = carga_inicial;        
+
+  </script>
+
+    
+</body>
+</html>
